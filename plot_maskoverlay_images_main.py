@@ -1,3 +1,4 @@
+import sys
 import argparse
 import os
 import numpy as np
@@ -9,6 +10,9 @@ from skimage import color
 from pylab import *
 
 if __name__ == "__main__":
+    if len(sys.argv) <= 1:
+        print('plot_maskoverlay_images_main.py -i [input_folder] -l [label_folder] -o [output_folder]')
+        exit(1)
     parser = argparse.ArgumentParser()
     parser.add_argument("-i", '--input_folder', help="Input image (nii.gz) folder name", default="images_test", required=False)
     parser.add_argument("-l", '--label_folder', help="Label image (nii.gz) folder name", default="eexo_seg_results_raw", required=False)

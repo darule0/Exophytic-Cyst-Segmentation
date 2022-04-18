@@ -1,3 +1,4 @@
+import sys
 import argparse
 import numpy as np
 from multiprocessing import Pool
@@ -8,6 +9,9 @@ from eexo_seg_module.eexo_load_model import load_model_and_checkpoint_files
 from eexo_seg_module.eexo_processing_modules import preprocess_multithreaded, save_segmentation_nifti_from_softmax
 
 if __name__ == "__main__":
+    if len(sys.argv) <= 1:
+        print('auto_eexo_seg_main.py -i [input_folder] -o [output_folder]')
+        exit(1)
     parser = argparse.ArgumentParser()
     parser.add_argument("-i", '--input_folder', help="Input folder name containing NIfTI(nii.gz) files", default="images_test", required=False)
     parser.add_argument('-o', "--output_folder", help="Folder name for saving predictions", default="eexo_seg_results_raw", required=False)
